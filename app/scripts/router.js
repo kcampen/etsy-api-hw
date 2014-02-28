@@ -3,6 +3,7 @@ var MainRouter = Backbone.Router.extend({
 	routes: {
 		'list' : 'showList',
 		'list/:keyword' : 'showItems'
+		
 	},
 
 	initialize: function(){
@@ -13,11 +14,19 @@ var MainRouter = Backbone.Router.extend({
 		})
 	},
 
+	
 	showItems: function(keyword){
+		$('.content').html('');
+
 		this.items.url += ('&keywords=' + keyword)
+
 
 		this.items.fetch();
 
 	}
 
 })
+
+
+
+
