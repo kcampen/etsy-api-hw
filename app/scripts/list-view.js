@@ -1,22 +1,34 @@
 var ListView = Backbone.View.extend({
 
+	tagName: 'a',
+
+	className: 'js-list-view',
 
 	createTemplate: _.template($('#list-template').text()),
 
 	initialize: function(){
+		this.setHref();
 
-		$('.content').append(this.el);
+		$('.sidebar').append(this.el);
 		
 		this.render();
 	},
 
 	render: function(){
 		var renderTemplate = this.createTemplate(this.model.attributes);
-		
+
 		this.$el.html(renderTemplate);
 
+
+	},
+
+	setHref: function(){
+		
+		var id = this.model.get('listing_id');
+		var link  = '#/items/' + id;
+		this.$el.attr({href: link});
 	}
-})
+});
 
 
 // var SearchView = Backbone.View.extend({

@@ -29,36 +29,55 @@
 
         <div class="container-fluid">
             <div class="header">
-                <ul class="nav nav-pills pull-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-                <h3 class="text-muted">etsy api</h3>
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">                  
+                            </button>
+                            <a class="navbar-brand" href="#">Brand</a>
+                        </div>            
+              <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav nav-pills">
+                                <li><a class="btn btn-sm btn-danger" href="#list/dinosaur">dinosaur</a></li>
+                                <li><a class="btn btn-sm btn-danger" href="#list/tennessee">tennessee</a></li>
+                                <form class="navbar-form navbar-left" role="search">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control search-input js-search-input" placeholder="Search">
+                                    </div>
+                                    <a class="btn btn-default btn-danger js-search-btn">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </a>                                
+                                </form> 
+                            </ul>                                            
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
             </div>
-            <div class="row">
-                <div class="col-md-4 jumbotron sidebar">
-                    <input class="search-input js-search-input" type="text" placeholder="search">
-                    <a class="btn btn-danger js-search-btn"><span class="glyphicon glyphicon-   search"></span></a>
-                    <p><a class="btn btn-lg btn-danger" href="#list/dinosaur">dinosaur</a></p>
-                    <p><a class="btn btn-lg btn-danger" href="#list/tennessee">tennessee</a></p>
-                </div>
-    
-                <div class="col-lg-8 content"></div>
+            <div class="row top-scroll">                  
+                <h3 class="text-muted">etsy api</h3>
+                <div class="col-lg-5 sidebar"></div>
+                <div class="col-lg-7 content"></div>
             </div>
         
             
             <div class="row bottom"></div>
             <div class="footer">
-                <p>♥ from the Yeoman team</p>
+                <p>♥ from kcampen</p>
             </div>
 
         </div>
 
         <script type="text/template" id="list-template">
-            <h3><%= this.model.get('title') %></h3>
-            <img src="<%= Images[0].url_fullxfull %>" style="width: 300px">
+            <img src="<%= Images[0].url_fullxfull %>" style="width: 100px">
+            <h4><%= this.model.get('title') %></h4>
         </script>
 
+        <script  type="text/template" id="item-template">
+            <img src="<%= Images[0].url_fullxfull %>" style="width: 300px">
+            <h4><%= this.model.get('title') %></h4>
+            <h4><%= this.model.get('price') %></h4>
+        </script>
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
@@ -95,6 +114,7 @@
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/list-view.js"></script>
+        <script src="scripts/item-view.js"></script>
         <script src="scripts/item-model.js"></script>
         <script src="scripts/router.js"></script>
         <script src="scripts/main.js"></script>
