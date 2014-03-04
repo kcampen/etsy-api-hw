@@ -3,12 +3,14 @@ var MainRouter = Backbone.Router.extend({
 	routes: {
 		'list' : 'showList',
 		'list/:keyword' : 'showAll',
-		'list/:id' : 'showItem'
+		'items/:id' : 'showItem'
 		
 	},
 	initialize: function(){
 		console.log('greetings');
 		this.items = new ItemsCollection();
+
+		console.log('what',this.items)
 		this.items.on('add', function(item){
 			new ListView({model: item});
 		});
@@ -16,7 +18,6 @@ var MainRouter = Backbone.Router.extend({
 
 	
 	showAll: function(keyword){
-		$('.content').html('');
 
 		this.items.url += ('&keywords=' + keyword);
 
@@ -26,14 +27,25 @@ var MainRouter = Backbone.Router.extend({
 	},
 
 	showItem: function(id){
-		console.log('showItem')
-		var focusItem = items.find(function(item){
-			return this.item.get('listing_id') === id;
-		});
+		$('.content').html('');
 
-		new ItemView({model: focusItem});
+		if (this.items.get('id')) {
+			var focusItem = this.items.get(id);
+			new ItemView({model: focusItem});
+		} else {
+			this.items.fetch({
+				success: function(collection){
+					console.log('what', collection)
+					var focusItem = collection.get(id);
+					console.log('id is',id)
+					console.log('focusItem is ', focusItem)
+					new ItemView({model: focusItem});
+				}
+			})
+		}
 
 	}
+
 
 });
 

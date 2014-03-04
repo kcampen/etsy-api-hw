@@ -18,12 +18,7 @@ $('.js-search-btn').on('click', function(){
 	$('.js-search-input').val('');
 });		
 
-$('.js-list-view').on('click', function(){
-	var id = this.model.get('listing_id');
 
-	window.location.hash = 'items/' + id;
-	console.log(id);
-})
 	
 });
 
